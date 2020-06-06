@@ -42,9 +42,7 @@
 	});
 
 	function handleClick(state) {
-		console.log(state);
 		return () => {
-			console.log(isHome, currState);
 			seenCities = [];
 			isHome = false;
 			currState = state;
@@ -68,7 +66,7 @@
 
 <div class="container">
 	<h1>Edit at: <a href={obj.edit_at} target="_blank"> here</a></h1>
-	{#each Object.keys(categorizedByState) as state}
+	{#each Object.keys(categorizedByState).sort() as state}
 			<button on:click={handleClick(state)} class="btn btn-6 btn-6e">{state}</button>
 	{/each}
 	{#if isHome === false} 
@@ -87,12 +85,15 @@
 				<p class="date">{dataPoint.date_text}</p>
 			{/if}
 			<p class="name">{dataPoint.name}</p>
-			{#if embed(dataPoint.links[0]) === 'reddit'}
+			{#each dataPoint.links as link} 
+				<a href={link} target="_blank">{link}</a><br>
+			{/each}
+			<!-- {#if embed(dataPoint.links[0]) === 'reddit'} -->
 				<!-- <blockquote class="reddit-card" data-card-created="1591095929"><a href={dataPoint.links[0]}>asdf</a></blockquote>
 				<script async src="//embed.redditmedia.com/widgets/platform.js" charset="UTF-8"></script> -->
-			{:else}
+			<!-- {:else}
 				<div>{dataPoint.links[0]}</div>
-			{/if}
+			{/if} -->
 		{/each}
 		
 	{/if}
