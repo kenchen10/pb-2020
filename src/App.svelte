@@ -65,29 +65,29 @@
 </script>
 
 <div class="container">
-	<h1>Police Brutality During the 2020 George Floyd Protests</h1>
-	<h3>Edit <a href={obj.edit_at} target="_blank"> here</a>.</h3>
+	<h1 id="title" class="animate__animated animate__fadeInDown">Police Brutality During the 2020 George Floyd Protests</h1>
+	<h3 id="edit" class="animate__animated animate__fadeInDown">Edit <a href={obj.edit_at} target="_blank"> here</a>.</h3>
 	{#each Object.keys(categorizedByState).sort() as state}
-			<button on:click={handleClick(state)} class="btn btn-6 btn-6e">{state}</button>
+			<button class="animate__animated animate__fadeIn" on:click={handleClick(state)}>{state}</button>
 	{/each}
 	{#if isHome === false} 
 		<br><br>
-		<hr>
-		<h2>{currState}</h2>
+		<hr class="animate__animated animate__fadeIn">
+		<h2 class="animate__animated animate__fadeIn">{currState}</h2>
 		{#each categorizedByState[currState] as dataPoint}
 			{#if updateSeenCities(dataPoint.city)}
-				<h3>{dataPoint.city}</h3>
+				<h3 class="animate__animated animate__fadeIn">{dataPoint.city}</h3>
 			{/if}
 			{#if dataPoint.date && dataPoint.date_text}
-				<p class="date">{dataPoint.date + ": " + dataPoint.date_text}</p>
+				<p class="animate__animated animate__fadeIn" id="date">{dataPoint.date + ": " + dataPoint.date_text}</p>
 			{:else if dataPoint.date && !dataPoint.date_text}
-				<p class="date">{dataPoint.date}</p>
+				<p class="animate__animated animate__fadeIn" id="date">{dataPoint.date}</p>
 			{:else if !dataPoint.date && dataPoint.date_text}
-				<p class="date">{dataPoint.date_text}</p>
+				<p class="animate__animated animate__fadeIn" id="date">{dataPoint.date_text}</p>
 			{/if}
-			<p class="name">{dataPoint.name}</p>
+			<p class="animate__animated animate__fadeIn" id="name">{dataPoint.name}</p>
 			{#each dataPoint.links as link} 
-				<a href={link} target="_blank">{link}</a><br>
+				<a class="animate__animated animate__fadeIn" href={link} target="_blank">{link}</a><br>
 			{/each}
 			<!-- {#if embed(dataPoint.links[0]) === 'reddit'} -->
 				<!-- <blockquote class="reddit-card" data-card-created="1591095929"><a href={dataPoint.links[0]}>asdf</a></blockquote>
@@ -101,6 +101,18 @@
 </div>
 
 <style>
+#title {
+	animation-delay: 0s;
+}
+
+#edit {
+	animation-delay: .4s;
+}
+
+button {
+	animation-delay: 1s;
+}
+
 .date {
 	font-style: italic;
 }
@@ -111,7 +123,7 @@
 	margin-bottom: 50px;
 }
 
-.btn {
+button {
 	border: none;
 	font-family: inherit;
 	font-size: inherit;
@@ -130,7 +142,7 @@
 	transition: all 0.3s;
 }
 
-.btn:after {
+button:after {
 	content: '';
 	position: absolute;
 	z-index: -1;
@@ -139,7 +151,7 @@
 	transition: all 0.3s;
 }
 
-.btn:before {
+button:before {
 	font-family: 'icomoon';
 	font-style: normal;
 	font-weight: normal;
@@ -150,7 +162,7 @@
 	-webkit-font-smoothing: antialiased;
 }
 
-.btn-6 {
+button {
 	color: #fff;
 	background: black;
 	-webkit-transition: none;
@@ -158,19 +170,23 @@
 	transition: none;
 }
 
-.btn-6:active {
+button:active {
 	top: 2px;
 }
 
-.btn-6e {
+button {
 	border: 2px dashed black;
 	border-radius: 6px;
 }
 
-.btn-6e:hover {
+button:hover {
 	background: transparent;
 	color: black;
 }
+
+/* p, h3, hr, h1, h4, button {
+    animation-delay: .4s;
+} */
 
 h2 {
 	text-decoration: underline;
