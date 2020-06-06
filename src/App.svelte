@@ -72,6 +72,8 @@
 			<button on:click={handleClick(state)} class="btn btn-6 btn-6e">{state}</button>
 	{/each}
 	{#if isHome === false} 
+		<br><br>
+		<hr>
 		<h2>{currState}</h2>
 		{#each categorizedByState[currState] as dataPoint}
 			{#if updateSeenCities(dataPoint.city)}
@@ -97,6 +99,10 @@
 </div>
 
 <style>
+.date {
+	font-style: italic;
+}
+
 .container {
 	width: 60%;
 	margin: auto;
@@ -162,5 +168,13 @@
 .btn-6e:hover {
 	background: transparent;
 	color: black;
+}
+
+h2 {
+	text-decoration: underline;
+}
+
+hr {
+	border: 1px solid #EEEEEE;
 }
 </style>
