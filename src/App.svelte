@@ -65,7 +65,8 @@
 </script>
 
 <div class="container">
-	<h1>Edit at: <a href={obj.edit_at} target="_blank"> here</a></h1>
+	<h1>Police Brutality During the 2020 George Floyd Protests</h1>
+	<h3>Edit <a href={obj.edit_at} target="_blank"> here</a>.</h3>
 	{#each Object.keys(categorizedByState).sort() as state}
 			<button on:click={handleClick(state)} class="btn btn-6 btn-6e">{state}</button>
 	{/each}
